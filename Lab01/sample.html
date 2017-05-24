@@ -1,0 +1,42 @@
+<HTML>
+<BODY>
+<PRE>
+<FONT COLOR="ForestGreen"><I>//  /*--------------------------------------------------------*\
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   Main Program: Traditional "Hello World" program
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |*--------------------------------------------------------*|
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   Date:         13 August 1996
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   Author:       Bruce W. Weide
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   Brief User's Manual:
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   Outputs to the screen "Hello world" on a line by
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   itself, and then quits.
+</I></FONT><FONT COLOR="ForestGreen"><I>//  |   
+</I></FONT><FONT COLOR="ForestGreen"><I>//  \*--------------------------------------------------------*/
+</I></FONT>
+
+<FONT COLOR="ForestGreen"><I>///-------------------------------------------------------------
+</I></FONT><FONT COLOR="ForestGreen"><I>/// Global Context ---------------------------------------------
+</I></FONT><FONT COLOR="ForestGreen"><I>///-------------------------------------------------------------
+</I></FONT>
+<B>#include</B> "RESOLVE_Foundation.h"
+
+
+<FONT COLOR="ForestGreen"><I>///-------------------------------------------------------------
+</I></FONT><FONT COLOR="ForestGreen"><I>/// Interface --------------------------------------------------
+</I></FONT><FONT COLOR="ForestGreen"><I>///-------------------------------------------------------------
+</I></FONT>
+<B>program_body</B> main ()
+<FONT COLOR="SaddleBrown"><I>/*!
+    ensures
+	stdout = #stdout * "Hello world\n"
+!*/</I></FONT>
+{
+    <B>object</B> <B>Character_OStream</B> outs;
+    
+    outs.Open_External ("");
+    outs &lt;&lt; "Hello world\n";
+    outs.Close_External ();
+}<FONT COLOR="ForestGreen"><I>// comment
+</I></FONT></PRE>
+</BODY>
+</HTML>

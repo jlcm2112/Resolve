@@ -1,0 +1,21 @@
+Amy
+amy
+Bob
+bob
+Carrie
+carrie
+de_l'Orme
+de_l'Orme
+Dagobert
+dagobert
+Names in reverse order:
+dagobert
+Dagobert
+de_l'Orme
+de_l'Orme
+carrie
+Carrie
+bob
+Bob
+amy
+Amy

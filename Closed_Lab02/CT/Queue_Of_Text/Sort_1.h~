@@ -1,0 +1,84 @@
+//  /*-------------------------------------------------------------------*\
+//  |   Concrete Template : Queue_Of_Text_Sort_1
+//  \*-------------------------------------------------------------------*/
+
+#ifndef CT_QUEUE_OF_TEXT_SORT_1
+#define CT_QUEUE_OF_TEXT_SORT_1 1
+
+///------------------------------------------------------------------------
+/// Global Context --------------------------------------------------------
+///------------------------------------------------------------------------
+
+#include "AI/Queue_Of_Text/Sort.h"
+/*!
+    #include "AT/Queue/Kernel.h"
+!*/
+   
+///------------------------------------------------------------------------
+/// Interface -------------------------------------------------------------
+///------------------------------------------------------------------------
+
+concrete_template <
+	concrete_instance class Queue_Of_Text_Base
+	/*!
+	    implements
+		abstract_instance Queue_Kernel <Text>
+	!*/
+    >
+class Queue_Of_Text_Sort_1 :
+    implements
+	abstract_instance Queue_Of_Text_Sort,
+    extends
+	concrete_instance Queue_Of_Text_Base
+{
+private:
+
+    local_procedure_body Remove_Min (
+	    alters Queue_Of_Text_Sort_1& q,
+	    produces Text& min
+	)
+	
+    {
+	assert (q.Length () > 0,
+		"q /= empty_string");
+
+	object Queue_Of_Text_Sort temp;
+	object catalyst Text foo;
+
+	min.Clear();
+
+	
+	while (q.Length() > 0)
+	{
+	    q.Dequeue (foo);
+	    if (min < foo)
+	    {
+		min = foo;
+	    }
+	    else
+	    {
+		temp.Enqueue (foo);
+	    }
+	}
+	    temp &= q;
+	
+    }
+
+public:
+    
+    procedure_body Sort ()
+    {
+	object Text min, test;
+	object Queue_Of_Text_Sort temp;
+	 
+ 
+	while (self.Length() >0)
+	{
+	    self.Remove_Min(min);
+	    temp.Enqueue(min);
+	    
+	}
+	temp &= self;
+};
+
+#endif // CT_QUEUE_OF_TEXT_SORT_1

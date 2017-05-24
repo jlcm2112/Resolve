@@ -1,0 +1,62 @@
+// WHAT THE MAINTAINER IS THINKING: [The saga continues from
+// Names_2.3_C++.cpp, because perhaps you didn't fix it in
+// Names_2.4_C++.cpp -- how confident are you?  Or perhaps the
+// maintainer we're observing isn't as smart as you are!]  Ah, &*#$@!
+// Wait a minute, I've got it!  I remember some old professor saying
+// that you should be careful about an assignment statement in C++
+// with user-defined classes, and especially with templates, because
+// sometimes assignment will copy a pointer and sometimes it will copy
+// a value.  If I understand the C++ manuals correctly, C++ treats
+// char[] and char* similarly for ALMOST all purposes.  However, if
+// you assign a char* to another char*, the pointer is copied.
+// Perhaps the Stack component would like it better if we actually
+// copied the contents of the array.  [Although, how would you know
+// without exploring the code for that component?  Exploring it, you
+// find that there IS an assignment of the Item to be pushed in the
+// Push code...  This won't compile with an ISO C++ compiler because
+// it "forbids assignment of arrays".]  [Try it!]
+
+using namespace std;
+
+#include <iostream>
+
+#include "Stack.h"
+
+class Stack_Of_Names :
+    public Stack <char[30]>
+{};
+
+int main ()
+{
+    Stack_Of_Names all_names;
+
+    // Read people's first names (assuming one word per line) from
+    // stdin until end of file, outputting both the original and an
+    // uncapitalized version and putting them in a stack to be
+    // reversed
+
+    while (! cin.eof ())
+    {
+	char one_name[30];
+	one_name[0] = '\0';
+	cin >> one_name;
+	if (strlen (one_name) > 0)
+	{
+	    cout << one_name << '\n';
+	    all_names.Push (one_name);
+	    one_name[0] = tolower (one_name[0]);
+	    cout << one_name << '\n';
+	    all_names.Push (one_name);
+	}
+    }
+
+    // Output all the names again, from the stack, in reverse order
+
+    cout << "Names in reverse order:\n";
+    while (all_names.Length () > 0)
+    {
+	char one_name[30];
+	all_names.Pop (one_name);
+	cout << one_name << '\n';
+    }
+}

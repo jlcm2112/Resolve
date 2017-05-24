@@ -1,0 +1,54 @@
+// WHAT THE MAINTAINER IS THINKING: The boss wants me to do this
+// trivial maintenance activity on Names_1_C++.cpp: Modify the program so
+// that it also prints out the names in reverse order.  This should be
+// easy.  Let's make life even simpler and use this off-the-shelf
+// Stack component that is lying around from our last project.
+// [Unfortunately, the component also has been poorly designed, like
+// most C++ classes.]  After outputting each name, let's add it to a
+// stack.  Then we can output the values as they are popped from it.
+// [Try it!  Actually you can't, because it won't compile.  First,
+// figure out why it might not compile; then figure out what would
+// happen if it did compile OK and actually ran; then move on to the
+// next version.]
+
+#include <iostream.h>
+#include <ctype.h>
+
+#include "Stack.h"
+
+class Stack_Of_Names :
+    public Stack <char*>
+{};
+
+main ()
+{
+    char one_name[30];
+    Stack_Of_Names all_names;
+
+    // Read people's first names (assuming one word per line) from
+    // stdin, until end of file, outputting both the original and an
+    // uncapitalized version and putting them in a stack to be
+    // reversed
+
+    while (! cin.eof ())
+    {
+	cin >> one_name;
+	if (strlen (one_name) > 0)
+	{
+	    cout << one_name << '\n';
+	    all_names.Push (one_name);
+	    one_name[0] = tolower (one_name[0]);
+	    cout << one_name << '\n';
+	    all_names.Push (one_name);
+	}
+    }
+
+    // Output all the names again, from the stack, in reverse order
+
+    cout << "Names in reverse order:\n";
+    while (all_names.Length () > 0)
+    {
+	all_names.Pop (one_name);
+	cout << one_name << '\n';
+    }
+}

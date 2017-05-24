@@ -1,0 +1,16 @@
+Each
+line
+(supposedly one word :-)
+is
+a
+separate
+Text
+item
+in
+the
+object
+of
+type
+Set_Of_Text.
+Notice that there is nothing in the specification that guarantees the wishful naming that a "word" really consists of a single word!
+If this line appears in the output for file2.txt, then you forgot to clear the produces-mode parameter.

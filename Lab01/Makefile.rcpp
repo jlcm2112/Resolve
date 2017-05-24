@@ -1,0 +1,146 @@
+##  /*----------------------------------------------------------------------*\
+##  |	This is an automatically generated makefile, produced by
+##  |	rcpp-make.  Use:
+##  |
+##  |	    rcpp-make
+##  |
+##  |	To invoke it.
+##  |
+##  \*----------------------------------------------------------------------*/
+
+##  /*----------------------------------------------------------------------*\
+##  |	User Customization (you can edit this):
+##  \*----------------------------------------------------------------------*/
+#   Use the following lines to add additional compiler or linker
+#   flags.  The flags you specify here will be added to the default
+#   set of flags, and used to compile all files.
+#
+#CCFLAGS +=
+#CPPFLAGS+=
+#LDFLAGS +=
+#LDLIBS  +=
+
+
+##  /*----------------------------------------------------------------------*\
+##  |	File Lists (DO NOT EDIT BY HAND):
+##  \*----------------------------------------------------------------------*/
+
+EXECS=\
+    Hello_World\
+    Pretty_Print\
+    New_Pretty_Print\
+    Goodbye_World
+
+OBJS=
+
+DEPENDENCY_FILES=\
+    Hello_World.d\
+    Pretty_Print.d\
+    New_Pretty_Print.d\
+    Goodbye_World.d
+
+
+##  /*----------------------------------------------------------------------*\
+##  |	Obj dependencies for executables:
+##  \*----------------------------------------------------------------------*/
+#   You may edit these directives by hand, but if you change them from
+#   their defaults, they will NOT be automatically maintained--you'll
+#   have to do that by hand.
+#
+
+
+HELLO_WORLD_OBJS=Hello_World.o $(OBJS)
+
+PRETTY_PRINT_OBJS=Pretty_Print.o $(OBJS)
+
+NEW_PRETTY_PRINT_OBJS=New_Pretty_Print.o $(OBJS)
+
+GOODBYE_WORLD_OBJS=Goodbye_World.o $(OBJS)
+
+##  /*----------------------------------------------------------------------*\
+##  |	Main Targets (DO NOT EDIT BY HAND):
+##  \*----------------------------------------------------------------------*/
+
+all: $(EXECS)
+	@echo ""
+	@echo "==== All executables rebuilt ===="
+
+check: $(EXECS)
+	EXECS="$(EXECS)" ;					\
+	ERRORS=0 ;						\
+	if test -n "$$EXECS" ; then				\
+	  for pgm in $$EXECS; do				\
+	    for suite in $${pgm}-suite* ; do			\
+	      if test "$$suite" = "$${pgm}-suite*" ; then	\
+		echo no test cases for $$pgm. ;		    	\
+	      else						\
+	        case "$$suite" in				\
+		$${pgm}-suite*-out*) ;;				\
+		*)  echo testing $$pgm using $$suite : ;	\
+		    $$pgm < $$suite > $$pgm.run 2>&1 ;		\
+		    if diff $$pgm.run $${suite}-out ; then		\
+		      echo "    ..." suite $$suite		\
+		        successfully "passed!";			\
+    		    else					\
+		      echo "    ..." suit $$suite "failed!" ; \
+		      ERRORS=1 ;				\
+		    fi ;					\
+		    rm $$pgm.run ;				\
+		    ;;						\
+		esac ;						\
+	      fi ;						\
+	    done ;						\
+	  done ;						\
+	else							\
+	  echo "No executables to test." ;			\
+	fi ;							\
+	exit $$ERRORS
+
+clean distclean:
+	rm -f $(EXECS)
+	rm -f $(OBJS)  $(DEPENDENCY_FILES)
+	EXECS="$(EXECS)" ;					\
+	for pgm in $$EXECS; do					\
+	    if test -f "$${pgm}.o" ; then			\
+		rm -f $${pgm}.o ; 				\
+	    fi ;						\
+	    if test -f "$${pgm}.exe" ; then			\
+		rm -f $${pgm}.exe ; 				\
+	    fi ;						\
+	done ;							\
+	rm -f Makefile.rcpp
+
+
+##  /*----------------------------------------------------------------------*\
+##  |	Targets for individual files:
+##  \*----------------------------------------------------------------------*/
+#   rcpp-make doesn't look below this line, so you may modify the
+#   compilation directives in this section however you wish.
+#   rcpp-make merely adds on to the end of the file when it creates
+#   new directives for additional source files.
+#
+
+Hello_World: $(HELLO_WORLD_OBJS)
+	@echo ""
+	@echo "==== Linking" $@ "===="
+	$(LINK.cpp) -o Hello_World $(HELLO_WORLD_OBJS) $(LDLIBS)
+include Hello_World.d
+
+Pretty_Print: $(PRETTY_PRINT_OBJS)
+	@echo ""
+	@echo "==== Linking" $@ "===="
+	$(LINK.cpp) -o Pretty_Print $(PRETTY_PRINT_OBJS) $(LDLIBS)
+include Pretty_Print.d
+
+New_Pretty_Print: $(NEW_PRETTY_PRINT_OBJS)
+	@echo ""
+	@echo "==== Linking" $@ "===="
+	$(LINK.cpp) -o New_Pretty_Print $(NEW_PRETTY_PRINT_OBJS) $(LDLIBS)
+include New_Pretty_Print.d
+
+Goodbye_World: $(GOODBYE_WORLD_OBJS)
+	@echo ""
+	@echo "==== Linking" $@ "===="
+	$(LINK.cpp) -o Goodbye_World $(GOODBYE_WORLD_OBJS) $(LDLIBS)
+include Goodbye_World.d
+

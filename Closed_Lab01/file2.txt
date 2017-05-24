@@ -1,0 +1,14 @@
+In
+this
+file,
+one
+word,
+namely
+the
+word
+file,
+-- i.e., "file," including the comma --
+appears
+multiple
+times.
+Still, each "word" (really, line) should appear in the output only once!
